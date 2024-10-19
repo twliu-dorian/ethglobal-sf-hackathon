@@ -3,7 +3,7 @@ require("@nomicfoundation/hardhat-toolbox");
 const dotenv = require("dotenv");
 dotenv.config();
 const apiUrlKey = process.env.API_URL_KEY
-const privKey = process.env.PRIVATE_KEY
+const privKey = process.env.USER_PRIVATE_KEY
 
 const config = {
   solidity: {

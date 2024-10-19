@@ -39,6 +39,7 @@
     "chokidar": "^4.0.1",
     "ci-info": "^2.0.0",
     "cipher-base": "^1.0.4",
+    "circomlib": "^2.0.5",
     "clean-stack": "^2.2.0",
     "cli-boxes": "^2.2.1",
     "cliui": "^7.0.4",

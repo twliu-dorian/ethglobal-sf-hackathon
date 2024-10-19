@@ -53,4 +53,4 @@ template Evaluator(){
     itemIdSquare <== itemId * itemId;
 }
 
-component main {public [root, nullifierHash, itemId]} = Fulfil();
+// component main {public [root, nullifierHash, itemId]} = Fulfil();
