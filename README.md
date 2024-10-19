@@ -27,3 +27,9 @@ Run the server!
 ```bash
 python flask_backend.py
 ```
+
+Optionally, test the server and refresh the webpage to see the changes to the database
+
+```bash
+python client_test.py
+```
