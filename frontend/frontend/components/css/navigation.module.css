@@ -1,0 +1,118 @@
+.nav {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
+    background-color: #d4e3f7;
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 18vw;
+}
+
+.navlist {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: none;
+}
+
+.selected {
+    background-color: #0000002d;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.unselected {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.unselected:hover {
+    background-color: #0000002d;
+}
+
+.navtext {
+    color: black;
+    text-decoration: none;
+}
+
+.navtext:hover {
+    text-decoration: none;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+    .nav {
+        box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.2);
+        background-color: #d4e3f7;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        height: auto;
+        z-index: 100;
+    }
+
+    .logo {
+        display: none;
+    }
+    
+    .navlist {
+        display: none;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (min-width: 450px) and (max-width: 950px) {
+    .nav {
+        box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.2);
+        background-color: #d4e3f7;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        height: auto;
+        z-index: 100;
+    }
+
+    .logo {
+        display: none;
+    }
+    
+    .navlist {
+        display: none;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
