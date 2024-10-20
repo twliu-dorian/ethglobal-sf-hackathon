@@ -44,5 +44,34 @@ def save_random_noun(fn, seed):
     img = get_random_noun(seed)
     img.save(fn)
 
+def get_random_noun_svg(seed):
+    base = get_random_noun(seed)
+
+    colors = base.getcolors(320 * 320)
+    color_map = {}
+    for count, color in colors:
+        if color not in color_map:
+            color_map[color] = []
+        color_map[color].append(count)
+
+    svg_content = f'<svg width="{320}" height="{320}" xmlns="http://www.w3.org/2000/svg">\n'
+
+    for color, counts in color_map.items():
+        svg_content += f'  <g fill="rgb{color}">\n'
+        for y in range(320):
+            for x in range(320):
+                if base.getpixel((x, y)) == color:
+                    svg_content += f'    <rect x="{x}" y="{y}" width="1" height="1" />\n'
+        svg_content += '  </g>\n'
+    svg_content += '</svg>'
+    return svg_content
+
 if __name__ == "__main__":
-    save_random_noun("test.png", 2674723)
+    random.seed(42)
+    for i in range(6):
+        seed = random.random()*1000
+        svg_content = get_random_noun_svg(seed)
+        with open(f"NGO{i}.svg", 'w') as f:
+            f.write(svg_content)
+        
+        save_random_noun(f"NGO{i}.png", seed)
