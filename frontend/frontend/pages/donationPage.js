@@ -3,7 +3,10 @@ import Header from "../components/header.js"; // Correctly import Header with up
 import styles from '../public/css/DonationConfirmation.module.css';
 import ConfirmationSection from '../components/confirmationSelection.js';
 import DonationList from '../components/donationLists.js';
+import ConfirmDonationButton from "../components/ConfirmDonationButton.js";
 //import NavBar from "../components/navBar.js"; // Ensure correct path and casing
+
+
 
 function DonationConfirmation() {
   return (
@@ -16,7 +19,10 @@ function DonationConfirmation() {
             <DonationList />
           </div>
         </div>
+        <ConfirmDonationButton />
+
       </main>
+      
     </>
   );
 }
