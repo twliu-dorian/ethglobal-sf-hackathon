@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/confirmationPage.module.css';
 import Header from '../components/header.js';
 
 function ConfirmationPage() {
+  const [completion, setCompletion] = useState("");
+
+  useEffect(() => {
+    const fetchCompletion = async () => {
+      try {
+        const response = await fetch('http://localhost:3003/api/smart_contract/donate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setCompletion(data.output);
+      } catch (error) {
+        console.error('Error fetching completion:', error);
+      }
+    };
+
+    fetchCompletion();
+  }, []);
+  
   return (
     
     <main className={styles.confirmationPage}>
@@ -19,6 +40,14 @@ function ConfirmationPage() {
           Your donation has gone through!
         </h1>
         <div className={styles.messageWrapper}>
+        <div>
+      {completion.split('\n').map((line, index) => (
+        <span key={index}>
+          {line}
+          <br />
+        </span>
+      ))}
+    </div>
           <p className={styles.confirmationMessage}>
             You will receive a notification with tracking information once enough people have contributed.
             Thank you for contributing to the cause!

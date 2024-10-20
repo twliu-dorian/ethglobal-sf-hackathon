@@ -8,7 +8,7 @@
   padding: 53px 80px 109px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1620px) {
   .confirmationPage {
     padding: 0 20px 100px;
   }
@@ -36,7 +36,7 @@
   font: 400 32px/42px Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1620px) {
   .confirmationTitle {
     max-width: 100%;
   }

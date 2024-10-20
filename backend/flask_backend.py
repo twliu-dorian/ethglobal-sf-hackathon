@@ -203,7 +203,9 @@ def add_wish_list():
 def donate():
     with new_cd("../smart-contracts"):
         output = subprocess.run("npx hardhat run scripts/blockchain/fulfillWishList.js".split(), capture_output=True)
-        data = {"output": str(output.stdout)}
+        output = str(str(output.stdout.decode("utf-8")).split("Generated Values:")[-1])
+        print(output)
+        data = {"output": output}
     return jsonify(data), 200
 
 @app.route('/api/smart_contract/track_NFT', methods=['POST'])
