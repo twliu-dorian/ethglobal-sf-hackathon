@@ -1,0 +1,111 @@
+.confirmationPage {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  padding: 53px 80px 109px;
+}
+
+@media (max-width: 991px) {
+  .confirmationPage {
+    padding: 0 20px 100px;
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  margin-left: 46px;
+  width: 777px;
+  max-width: 100%;
+  flex-direction: column;
+}
+
+.confirmationIcon {
+  aspect-ratio: 0.97;
+  object-fit: contain;
+  object-position: center;
+  width: 96px;
+  align-self: center;
+}
+
+.confirmationTitle {
+  color: var(--Colors-Heading, #1e0e62);
+  margin-top: 28px;
+  font: 400 32px/42px Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .confirmationTitle {
+    max-width: 100%;
+  }
+}
+
+.messageWrapper {
+  display: flex;
+  width: 620px;
+  max-width: 100%;
+  flex-direction: column;
+  margin: 17px 0 0 41px;
+}
+
+.confirmationMessage {
+  color: var(--Colors-Text, rgba(21, 20, 57, 0.4));
+  align-self: center;
+  width: 464px;
+  font: 500 16px/26px Della Respira, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .confirmationMessage {
+    max-width: 100%;
+  }
+}
+
+.actionButtons {
+  display: flex;
+  margin-top: 55px;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font: 400 18px/1 Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .actionButtons {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+}
+
+.trackDonationButton {
+  align-self: start;
+  margin-top: 10px;
+  color: var(--Action-Secondary, #482be7);
+}
+
+.continueButton {
+  border-radius: 100px;
+  background: var(--Action-Secondary, #482be7);
+  color: var(--Colors-White, #fff);
+  padding: 7px 24px;
+}
+
+@media (max-width: 991px) {
+  .continueButton {
+    padding: 0 20px;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
