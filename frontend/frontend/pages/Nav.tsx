@@ -7,10 +7,10 @@ const Nav: React.FC = () => {
   const logo = 'Anonymous Donate';
 
   return (
-    
-    <div>
-      <NavigationBar menuItems={menuItems} logo={logo} />
-    </div>
+      <div>
+        <NavigationBar menuItems={menuItems} logo={logo} />
+      </div>
+
   );
 };
 
