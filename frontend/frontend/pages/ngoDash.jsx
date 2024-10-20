@@ -1,25 +1,26 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import Header from '../components/header.js';
 
-const Header = () => (
-  <header className="bg-indigo-700 text-white p-4 flex justify-between items-center">
-    <div className="flex items-center space-x-2">
-      <div className="bg-yellow-400 rounded-full p-2 w-10 h-10 flex items-center justify-center">
-        <span className="text-black font-bold">CS</span>
-      </div>
-      <span className="text-2xl font-bold">ChainSplash</span>
-    </div>
-    <nav className="space-x-4">
-      <a href="#" className="hover:underline">Dashboard</a>
-      <a href="#" className="hover:underline">Impact</a>
-      <a href="#" className="hover:underline">Leaderboard</a>
-      <a href="#" className="hover:underline">Home</a>
-    </nav>
-    <button className="bg-white text-indigo-700 px-4 py-2 rounded-full font-semibold">
-      Connect to Wallet
-    </button>
-  </header>
-);
+// const Header = () => (
+//   <header className="bg-indigo-700 text-white p-4 flex justify-between items-center">
+//     <div className="flex items-center space-x-2">
+//       <div className="bg-yellow-400 rounded-full p-2 w-10 h-10 flex items-center justify-center">
+//         <span className="text-black font-bold">CS</span>
+//       </div>
+//       <span className="text-2xl font-bold">ChainSplash</span>
+//     </div>
+//     <nav className="space-x-4">
+//       <a href="#" className="hover:underline">Dashboard</a>
+//       <a href="#" className="hover:underline">Impact</a>
+//       <a href="#" className="hover:underline">Leaderboard</a>
+//       <a href="#" className="hover:underline">Home</a>
+//     </nav>
+//     <button className="bg-white text-indigo-700 px-4 py-2 rounded-full font-semibold">
+//       Connect to Wallet
+//     </button>
+//   </header>
+// );
 
 const NGOProfile = () => (
   <div className="bg-white p-6 rounded-lg shadow-md">

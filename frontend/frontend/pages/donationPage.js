@@ -1,10 +1,10 @@
 // src/pages/DonationConfirmation.jsx
 
 import React from "react";
-import Header from "../components/Header.js"; // Ensure correct casing
+import Header from "../components/header.js"; // Ensure correct casing
 import styles from '../public/css/DonationConfirmation.module.css';
-import ConfirmationSection from '../components/ConfirmationSelection.js';
-import DonationList from '../components/DonationLists.js';
+import ConfirmationSection from '../components/confirmationSelection.js';
+import DonationList from '../components/donationLists.js';
 import ConfirmDonationButton from "../components/ConfirmDonationButton.js";
 // import NavBar from "../components/NavBar.js"; // Ensure correct path and casing if needed
 
