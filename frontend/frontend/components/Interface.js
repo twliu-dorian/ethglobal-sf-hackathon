@@ -1,10 +1,12 @@
 import { useState } from "react";
 import $u from '../utils/$u.js';
 import * as ethers from "ethers";
+import Header from "./header.js";
 
 const wc = require("../circuit/witness_calculator.js");
 
 const tornadoAddress = "0x06DB9c2856Eab779B2794E98c769a2e6aDA4D4b6";
+
 const tornadoJSON = require("../json/Tornado.json");
 const tornadoABI = tornadoJSON.abi;
 const tornadoInterface = new ethers.utils.Interface(tornadoABI);
@@ -12,103 +14,6 @@ const tornadoInterface = new ethers.utils.Interface(tornadoABI);
 const ButtonState = { Normal: 0, Loading: 1, Disabled: 2 };
 
 const Interface = () => {
-       // State variables for form inputs
-       const [itemId, setItemId] = useState('');
-       const [price, setPrice] = useState('');
-       const [recipient, setRecipient] = useState('');
-       // Optional: State to hold and display the current wishlist
-       const [wishlist, setWishlist] = useState([]);
-   
-       // Handler for adding a new wishlist item
-       const handleAdd = () => {
-           if (itemId.trim() === '' || price === '' || recipient.trim() === '') {
-               alert('Please fill in all fields.');
-               return;
-           }
-   
-           // Add the item to the wishlist
-           wishlistManager.addWishlistItem(itemId, parseFloat(price), recipient);
-   
-           // Update the local wishlist state (for display purposes)
-           setWishlist([...wishlistManager.wishlist]);
-   
-           // Clear the input fields
-           setItemId('');
-           setPrice('');
-           setRecipient('');
-       };
-   
-       // Handler to display the wishlist (optional)
-       const handleDisplay = () => {
-           wishlistManager.displayWishlist();
-           setWishlist([...wishlistManager.wishlist]);
-       };
-   
-       // Handler to clear the wishlist (optional)
-       const handleClear = () => {
-           wishlistManager.clearWishlist();
-           setWishlist([]);
-       };
-   
-       return (
-           <div className="container mt-5">
-               <h2>Add to Wishlist</h2>
-               <div className="mb-3">
-                   <label htmlFor="itemId" className="form-label">Item ID</label>
-                   <input 
-                       type="text" 
-                       className="form-control" 
-                       id="itemId" 
-                       value={itemId} 
-                       onChange={(e) => setItemId(e.target.value)} 
-                       placeholder="Enter Item ID"
-                   />
-               </div>
-               <div className="mb-3">
-                   <label htmlFor="price" className="form-label">Price</label>
-                   <input 
-                       type="number" 
-                       className="form-control" 
-                       id="price" 
-                       value={price} 
-                       onChange={(e) => setPrice(e.target.value)} 
-                       placeholder="Enter Price"
-                   />
-               </div>
-               <div className="mb-3">
-                   <label htmlFor="recipient" className="form-label">Recipient</label>
-                   <input 
-                       type="text" 
-                       className="form-control" 
-                       id="recipient" 
-                       value={recipient} 
-                       onChange={(e) => setRecipient(e.target.value)} 
-                       placeholder="Enter Recipient Address"
-                   />
-               </div>
-               <button className="btn btn-primary me-2" onClick={handleAdd}>Add to Wishlist</button>
-               <button className="btn btn-secondary me-2" onClick={handleDisplay}>Display Wishlist</button>
-               <button className="btn btn-danger" onClick={handleClear}>Clear Wishlist</button>
-   
-               {/* Optional: Display the wishlist items */}
-               {wishlist.length > 0 && (
-                   <div className="mt-5">
-                       <h3>Current Wishlist</h3>
-                       <ul className="list-group">
-                           {wishlist.map((item, index) => (
-                               <li key={index} className="list-group-item">
-                                   <strong>Item {index + 1}:</strong><br />
-                                   Item ID: {item.itemId}<br />
-                                   Price: {item.price}<br />
-                                   Recipient: {item.recipient}
-                               </li>
-                           ))}
-                       </ul>
-                   </div>
-               )}
-           </div>
-       );
-    
     const [account, updateAccount] = useState(null);
     const [proofElements, updateProofElements] = useState(null);
     const [proofStringEl, updateProofStringEl] = useState(null);
@@ -121,7 +26,6 @@ const Interface = () => {
     const [metamaskButtonState, updateMetamaskButtonState] = useState(ButtonState.Normal);
     const [depositButtonState, updateDepositButtonState] = useState(ButtonState.Normal);
     const [withdrawButtonState, updateWithdrawButtonState] = useState(ButtonState.Normal);
-
 
     const connectMetamask = async () => {
         try{
@@ -175,7 +79,7 @@ const Interface = () => {
         const commitment = r[1];
         const nullifierHash = r[2];
 
-        const value = ethers.BigNumber.from("100000000000").toHexString();
+        const value = ethers.BigNumber.from("10000000").toHexString();
 
         const tx = {
             to: tornadoAddress,
@@ -275,42 +179,53 @@ const Interface = () => {
         }, 1000);
     }
 
+    
     return (
         <div>
+            <div style={{ height: "40px" }}></div>
+            {/* Wishlist Section */}
+            <Header />
+            <nav className="navbar navbar-nav fixed-top text-light" style={{ backgroundColor: "#2F1893" }}>
+    {!!account ? (
+        <div className="container">
+            <div className="navbar-left">
+                <span><strong>ChainId:</strong></span>
+                <br/>
+                <span>{account.chainId}</span>
+            </div>
+            <div className="navbar-right">
+                <span><strong>{account.address.slice(0, 12) + "..."}</strong></span>
+                <br/>
+                <span className="small">{account.balance.slice(0, 10) + ((account.balance.length > 10) ? ("...") : (""))} ETH</span>
+            </div>
+        </div>
+    ) : (
+        <div className="container">
+            <div className="navbar-left"><h5></h5></div>
+            <div className="navbar-right">
+                <button 
+                    className="relative px-80 py-40 bg-indigo-6600 text-white font-bold text-xl rounded-full overflow-hidden"
+                    style={{
+                      boxShadow: '0 0 0 2px white',
+                    }}
+                    onClick={connectMetamask}
+                    disabled={metamaskButtonState == ButtonState.Disabled}>
+                    <span className="relative z-10">Connect to Wallet</span>
+                    <div 
+                    className="absolute inset-0 bg-white opacity-20"
+                    style={{
+                        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 15% 50%)',
+                    }}
+      />
+    </button>
+            </div>
+        </div>
+    )}
+</nav>
 
-            <nav className="navbar navbar-nav fixed-top bg-dark text-light">
-                {
-                    !!account ? (
-                        <div className="container">
-                            <div className="navbar-left">
-                                <span><strong>ChainId:</strong></span>
-                                <br/>
-                                <span>{account.chainId}</span>
-                            </div>
-                            <div className="navbar-right">
-                                <span><strong>{account.address.slice(0, 12) + "..."}</strong></span>
-                                <br/>
-                                <span className="small">{account.balance.slice(0, 10) + ((account.balance.length > 10) ? ("...") : (""))} ETH</span>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="container">
-                            <div className="navbar-left"><h5>Donation Page</h5></div>
-                            <div className="navbar-right">
-                                <button 
-                                    className="btn btn-primary" 
-                                    onClick={connectMetamask}
-                                    disabled={metamaskButtonState == ButtonState.Disabled}    
-                                >Connect Metamask</button>
-                            </div>
-                        </div>
-                    )
-                }
+            
 
-                
-            </nav>
-
-            <div style={{ height: "60px" }}></div>
+            <div style={{ height: "30px" }}></div>
 
             <div className="container" style={{ marginTop: 60 }}>
                 <div className="card mx-auto" style={{ maxWidth: 450 }}>
@@ -396,7 +311,7 @@ const Interface = () => {
                                             </div>
                                         ) : (
                                             <div>
-                                                <p className="text-secondary">Note: All deposits and withdrawals are of the same denomination of 0.001 ETH.</p>
+                                                <p className="text-secondary">Note: Please copy the Proof of Deposit into the Withdraw textbox.</p>
                                                 <div className="form-group">
                                                     <textarea className="form-control" style={{ resize: "none" }} ref={(ta) => { updateTextArea(ta); }}></textarea>
                                                 </div>
@@ -404,7 +319,7 @@ const Interface = () => {
                                                     className="btn btn-primary" 
                                                     onClick={withdraw}
                                                     disabled={withdrawButtonState == ButtonState.Disabled}
-                                                ><span className="small">Withdraw 0.001 ETH</span></button>
+                                                ><span className="small">Withdraw 0.0000001 ETH</span></button>
                                             </div>                  
                                         )
                                     }
@@ -425,11 +340,13 @@ const Interface = () => {
 
                     <div className="card-footer p-4" style={{ lineHeight: "15px" }}>
                         <span className="small text-secondary" style={{ fontSize: "12px" }}>
-                            <strong>Disclaimer:</strong> Donation App
+                            <strong>Disclaimer:</strong> Products intended for ETH Hackathon purposes only.
                         </span>
                     </div>
                 </div>
+                <div style={{ height: "30px" }}></div>
             </div>
+            <div style={{ height: "100px" }}></div>
         </div>
     )
 };

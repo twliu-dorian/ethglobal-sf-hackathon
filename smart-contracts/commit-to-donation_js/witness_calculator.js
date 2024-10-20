@@ -149,7 +149,7 @@ class WitnessCalculator {
 		throw new Error(`Too many values for input signal ${k}\n`);
 	    }
             for (let i=0; i<fArr.length; i++) {
-                const arrFr = toArray32(BigInt(fArr[i])%this.prime,this.n32)
+                const arrFr = toArray32(normalize(fArr[i],this.prime),this.n32)
                 for (let j=0; j<this.n32; j++) {
 		    this.instance.exports.writeSharedRWMemory(j,arrFr[this.n32-1-j]);
 		}
@@ -316,22 +316,22 @@ function flatArray(a) {
     }
 }
 
-function fnvHash(str) {
-    try {
-        const uint64_max = BigInt(2) ** BigInt(64);
-        let hash = BigInt("0xCBF29CE484222325");
-        for (let i = 0; i < str.length; i++) {
-            hash ^= BigInt(str.charCodeAt(i));
-            hash *= BigInt("0x100000001B3");
-            hash %= uint64_max;
-        }
-        let shash = hash.toString(16);
-        let n = 16 - shash.length;
-        shash = '0'.repeat(n > 0 ? n : 0) + shash;
-        return shash;
-    } catch (error) {
-        console.error("Error in fnvHash:", error);
-        throw error;
-    }
+function normalize(n, prime) {
+    let res = BigInt(n) % prime
+    if (res < 0) res += prime
+    return res
 }
 
+function fnvHash(str) {
+    const uint64_max = BigInt(2) ** BigInt(64);
+    let hash = BigInt("0xCBF29CE484222325");
+    for (var i = 0; i < str.length; i++) {
+	hash ^= BigInt(str[i].charCodeAt());
+	hash *= BigInt(0x100000001B3);
+	hash %= uint64_max;
+    }
+    let shash = hash.toString(16);
+    let n = 16 - shash.length;
+    shash = '0'.repeat(n).concat(shash);
+    return shash;
+}
