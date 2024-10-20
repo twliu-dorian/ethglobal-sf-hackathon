@@ -1,3 +1,7 @@
 /node_modules
 .env
 /cache
+/secret
+fulfull.zkey
+fulfill.r1cs
+/plonk

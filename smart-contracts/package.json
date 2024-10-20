@@ -148,6 +148,7 @@
     "setimmediate": "^1.0.5",
     "setprototypeof": "^1.2.0",
     "sha.js": "^2.4.11",
+    "snarkjs": "^0.7.5",
     "solc": "^0.8.26",
     "source-map": "^0.6.1",
     "source-map-support": "^0.5.21",
