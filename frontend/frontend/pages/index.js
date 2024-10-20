@@ -1,7 +1,8 @@
 
 import Script from "next/script";
 import Interface from '../components/Interface.js';
-import { WishlistManager } from '../components/wishListManager.js';
+
+import Head from 'next/head';
 
 const Index = () => {
 

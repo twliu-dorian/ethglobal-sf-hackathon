@@ -1,0 +1,118 @@
+.navigation {
+    background: var(--Background-Dark, #2f1893);
+    overflow: hidden;
+    padding: 30px 80px;
+  }
+  
+  @media (max-width: 991px) {
+    .navigation {
+      padding: 0 20px;
+    }
+  }
+  
+  .container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  @media (max-width: 991px) {
+    .container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+  
+  .menuColumn {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 28%;
+    margin-left: 0;
+  }
+  
+  @media (max-width: 991px) {
+    .menuColumn {
+      width: 100%;
+    }
+  }
+  
+  .menu {
+    display: flex;
+    gap: 28px;
+    align-self: stretch;
+    color: var(--Colors-White, #fff);
+    white-space: nowrap;
+    margin: auto 0;
+    font: 400 16px/2 Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  @media (max-width: 991px) {
+    .menu {
+      margin-top: 40px;
+      white-space: initial;
+    }
+  }
+  
+  .menuItem {
+    flex-grow: 1;
+  }
+  
+  .dropdownIcon {
+    text-align: center;
+    align-self: start;
+    font: 20px/1.3 FontAwesome, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .logoColumn {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 72%;
+    margin-left: 20px;
+  }
+  
+  @media (max-width: 991px) {
+    .logoColumn {
+      width: 100%;
+    }
+  }
+  
+  .logoContainer {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+    font-family: Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 400;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 991px) {
+    .logoContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  
+  .logo {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: -0.29px;
+    margin: auto 0;
+  }
+  
+  .connectWallet {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: var(--Colors-White, #fff);
+    line-height: 1;
+  }
+  
+  .connectButton {
+    border-radius: 100px;
+    border: 2px solid var(--Colors-White, #fff);
+    padding: 9px 7px;
+  }
