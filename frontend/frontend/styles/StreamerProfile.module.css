@@ -1,0 +1,263 @@
+.streamerProfile {
+    background-color: #fff;
+    display: flex;
+    padding-bottom: 63px;
+    flex-direction: column;
+    overflow: hidden;
+    max-width: none !important;
+  }
+  
+  .headerImage {
+    aspect-ratio: 15.87;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+  }
+  
+  @media (max-width: 991px) {
+    .headerImage {
+      max-width: 100%;
+    }
+  }
+  
+  .contentWrapper {
+    align-self: center;
+    display: flex;
+    margin-top: 59px;
+    width: 100%;
+    max-width: 1168px;
+    flex-direction: column;
+  }
+  
+  @media (max-width: 991px) {
+    .contentWrapper {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  
+  .pageTitle {
+    color: var(--Colors-Heading, #1e0e62);
+    letter-spacing: -0.4px;
+    align-self: start;
+    font: 400 42px/1 Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  @media (max-width: 991px) {
+    .pageTitle {
+      max-width: 100%;
+    }
+  }
+  
+  .filterContainer {
+    display: flex;
+    margin-top: 29px;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 991px) {
+    .filterContainer {
+      max-width: 100%;
+    }
+  }
+  
+  .categoryList {
+    display: flex;
+    gap: 36px;
+    color: var(--Colors-Text, rgba(21, 20, 57, 0.4));
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font: 700 14px/26px DM Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  @media (max-width: 991px) {
+    .categoryList {
+      white-space: initial;
+    }
+  }
+  
+  .activeCategory {
+    color: var(--Colors-Heading, #1e0e62);
+  }
+  
+  .sortContainer {
+    align-self: start;
+    display: flex;
+    gap: 5px;
+    color: var(--Colors-Heading, #1e0e62);
+  }
+  
+  .sortLabel {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    flex-grow: 1;
+    font: 700 14px/26px DM Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .sortIcon {
+    margin: auto 0;
+    font: 400 18px FontAwesome, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .streamerGrid {
+    margin-top: 18px;
+    width: 100%;
+  }
+  
+  @media (max-width: 991px) {
+    .streamerGrid {
+      max-width: 100%;
+      margin-right: 6px;
+    }
+  }
+  
+  .streamerRow {
+    gap: 20px;
+    display: flex;
+  }
+  
+  @media (max-width: 991px) {
+    .streamerRow {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0px;
+    }
+  }
+  
+  .streamerColumn {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 50%;
+    margin-left: 0px;
+  }
+  
+  @media (max-width: 991px) {
+    .streamerColumn {
+      width: 100%;
+    }
+  }
+  
+  .streamerCard {
+    flex-grow: 1;
+  }
+  
+  @media (max-width: 991px) {
+    .streamerCard {
+      max-width: 100%;
+      margin-top: 38px;
+    }
+  }
+  
+  .streamerImageContainer {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    position: relative;
+    aspect-ratio: 1.227;
+    flex-grow: 1;
+    padding-top: 156px;
+  }
+  
+  @media (max-width: 991px) {
+    .streamerImageContainer {
+      margin-top: 30px;
+      padding-top: 100px;
+    }
+  }
+  
+  .streamerImage {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .streamerLogo {
+    aspect-ratio: 4.22;
+    object-fit: contain;
+    object-position: center;
+    width: 270px;
+  }
+  
+  .streamerInfo {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-self: stretch;
+    align-items: start;
+    color: var(--Colors-Text, rgba(21, 20, 57, 0.4));
+    margin: auto 0;
+    font: 400 16px DM Sans, sans-serif;
+  }
+  
+  @media (max-width: 991px) {
+    .streamerInfo {
+      margin-top: 37px;
+    }
+  }
+  
+  .streamerName {
+    color: var(--Colors-Heading, #1e0e62);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  
+  .streamerPrice {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  .streamerDescription {
+    line-height: 2;
+    margin-top: 6px;
+  }
+  
+  .actionContainer {
+    align-self: stretch;
+    display: flex;
+    margin-top: 72px;
+    gap: 11px;
+    font-family: Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
+    color: var(--Action-Secondary, #482be7);
+    line-height: 1;
+  }
+  
+  @media (max-width: 991px) {
+    .actionContainer {
+      margin-top: 40px;
+    }
+  }
+  
+  .donateButton {
+    border-radius: 100px;
+    border: 2px solid var(--Action-Secondary, #482be7);
+    padding: 9px 17px;
+  }
+  
+  .watchLaterButton {
+    flex-grow: 1;
+    margin: auto 0;
+  }
+  
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
