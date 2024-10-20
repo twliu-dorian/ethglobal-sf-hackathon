@@ -1,0 +1,65 @@
+.containerhome {
+    display: flex;
+    flex-direction: column !important;
+    margin-left: 0 !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 18vw;
+}
+
+.background {
+    z-index: -10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    grid-area: header; 
+    text-align: center;
+}
+
+.homelogo {
+    width: 40vw;
+    height: auto;
+}
+
+.home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1.5%;
+    width: 7vw;
+    cursor: pointer;
+}
+ 
+.nav {grid-area: nav;}
+
+.main {
+    grid-area: main; 
+    padding: 0 1rem; 
+    width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+    .container {
+        display: flex;
+        flex-direction: column-reverse;  
+        row-gap: 0;   
+        margin-left: 0; 
+    }
+}
+
+@media screen and (min-width: 450px) and (max-width: 950px) {
+    .container {
+        display: flex;
+        flex-direction: column-reverse;  
+        row-gap: 0;   
+        margin-left: 0; 
+    }
+}
