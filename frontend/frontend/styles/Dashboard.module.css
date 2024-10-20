@@ -1,0 +1,78 @@
+.dashboard {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #4525c6;
+    color: #ffffff;
+  }
+  
+  .navbar a {
+    margin: 0 10px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .walletButton {
+    background-color: #f99c1e;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .main {
+    padding: 20px;
+  }
+  
+  .welcomeSection, .nftTransferTracker, .fundraisingTracker, .goodsTracker, .impactMetrics {
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .fundraisingTracker div {
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .goodsTracker div, .impactMetrics ul li {
+    margin-bottom: 10px;
+  } 
+  
+  .goodsTracker {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nftTransferTracker ul, .impactMetrics ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .nftTransferTracker ul li {
+    margin-bottom: 10px;
+  } 
+  
+  /* .header h1, .welcomeSection h2, .nftTransferTracker h3, .fundraisingTracker h3, .goodsTracker h3, .impactMetrics h3 {
+    margin: 0;
+    padding-bottom: 10px;
+    font-weight: bold;
+  } 
+  
+  ul {
+    margin: 0;
+    padding-left: 0;
+  } 
+  
+  p {
+    margin: 0;
+    padding: 0;
+  } 
+   */
