@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import styles from './css/header.module.css';
+import styles from '../public/css/header.module.css';
 
 export const Header = () => {
   const [isConnected, setIsConnected] = useState(false);
