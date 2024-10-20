@@ -13,16 +13,14 @@ function ConfirmationSection() {
           </p>
         </div>
         <div className={styles.paymentInfo}>
-          <h3 className={styles.subTitle}>Payment</h3>
+        <button className={styles.editButton}>Edit</button>
+
           <div className={styles.paymentMethod}>
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/53e52191-06ab-48fc-bef9-b2eea16e3acc?placeholderIfAbsent=true&apiKey=43c1a25f84654539a2ceb0693edc8e81" alt="Payment method" className={styles.paymentIcon} />
-            <button className={styles.editButton}>Edit</button>
-          </div>
-          
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/53e52191-06ab-48fc-bef9-b2eea16e3acc?placeholderIfAbsent=true&apiKey=43c1a25f84654539a2ceb0693edc8e81" alt="Payment method" className={styles.paymentIcon} />          </div>
+
         </div>
         <div className={styles.commentSection}>
           <h3 className={styles.subTitle}>Comment</h3>
-          <button className={styles.editButton}>Edit</button>
         </div>
         <textarea className={styles.commentInput} placeholder="Enter your comment" aria-label="Enter your comment"></textarea>
         <button className={styles.backButton}>

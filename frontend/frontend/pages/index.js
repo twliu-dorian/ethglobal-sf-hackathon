@@ -1,17 +1,11 @@
 
 import Script from "next/script";
 import Interface from '../components/Interface.js';
+import Head from '../components/header.js';
 
-import Head from 'next/head';
 
 const Index = () => {
 
-    const wishlistManager = new WishlistManager();
-
-         // Example usage of WishlistManager
-    wishlistManager.displayWishlist();
-
-        
     return (
         <div>
             <link rel="stylesheet" href="/css/bootstrap.min.css"></link>

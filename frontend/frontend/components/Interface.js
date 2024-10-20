@@ -1,8 +1,7 @@
 import { useState } from "react";
 import $u from '../utils/$u.js';
 import * as ethers from "ethers";
-import Wishlist from "./wishList";
-
+import Header from "./header.js";
 
 const wc = require("../circuit/witness_calculator.js");
 
@@ -183,45 +182,50 @@ const Interface = () => {
     
     return (
         <div>
-            <div style={{ height: "70px" }}></div>
+            <div style={{ height: "40px" }}></div>
             {/* Wishlist Section */}
-            <Wishlist />
-
-            <nav className="navbar navbar-nav fixed-top bg-dark text-light">
-                {
-                    !!account ? (
-                        <div className="container">
-                            <div className="navbar-left">
-                                <span><strong>ChainId:</strong></span>
-                                <br/>
-                                <span>{account.chainId}</span>
-                            </div>
-                            <div className="navbar-right">
-                                <span><strong>{account.address.slice(0, 12) + "..."}</strong></span>
-                                <br/>
-                                <span className="small">{account.balance.slice(0, 10) + ((account.balance.length > 10) ? ("...") : (""))} ETH</span>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="container">
-                            <div className="navbar-left"><h5>Donation</h5></div>
-                            <div className="navbar-right">
-                                <button 
-                                    className="btn btn-primary" 
-                                    onClick={connectMetamask}
-                                    disabled={metamaskButtonState == ButtonState.Disabled}    
-                                >Connect Metamask</button>
-                            </div>
-                        </div>
-                    )
-                }
-
-                
-            </nav>
+            <Header />
+            <nav className="navbar navbar-nav fixed-top text-light" style={{ backgroundColor: "#2F1893" }}>
+    {!!account ? (
+        <div className="container">
+            <div className="navbar-left">
+                <span><strong>ChainId:</strong></span>
+                <br/>
+                <span>{account.chainId}</span>
+            </div>
+            <div className="navbar-right">
+                <span><strong>{account.address.slice(0, 12) + "..."}</strong></span>
+                <br/>
+                <span className="small">{account.balance.slice(0, 10) + ((account.balance.length > 10) ? ("...") : (""))} ETH</span>
+            </div>
+        </div>
+    ) : (
+        <div className="container">
+            <div className="navbar-left"><h5></h5></div>
+            <div className="navbar-right">
+                <button 
+                    className="relative px-80 py-40 bg-indigo-6600 text-white font-bold text-xl rounded-full overflow-hidden"
+                    style={{
+                      boxShadow: '0 0 0 2px white',
+                    }}
+                    onClick={connectMetamask}
+                    disabled={metamaskButtonState == ButtonState.Disabled}>
+                    <span className="relative z-10">Connect to Wallet</span>
+                    <div 
+                    className="absolute inset-0 bg-white opacity-20"
+                    style={{
+                        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 15% 50%)',
+                    }}
+      />
+    </button>
+            </div>
+        </div>
+    )}
+</nav>
 
             
 
-            <div style={{ height: "60px" }}></div>
+            <div style={{ height: "30px" }}></div>
 
             <div className="container" style={{ marginTop: 60 }}>
                 <div className="card mx-auto" style={{ maxWidth: 450 }}>
@@ -340,7 +344,9 @@ const Interface = () => {
                         </span>
                     </div>
                 </div>
+                <div style={{ height: "30px" }}></div>
             </div>
+            <div style={{ height: "100px" }}></div>
         </div>
     )
 };
