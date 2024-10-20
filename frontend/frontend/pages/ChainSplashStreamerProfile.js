@@ -112,11 +112,13 @@ const categories = ['HUMANITARIAN AID', 'ENVIRONMENT', 'EDUCATION', 'ANIMAL WALF
 
 const StreamerCard = ({ name, amount, image, description, category }) => {
   // const { setDonationId } = useContext(DonationContext);
+  // const navigate = useNavigate();
 
   const handleDonate = () => {
     console.log(`Donating to ${name}`);
     // setDonationId(id);
-    navigate('/donatePage');
+    // navigate('/donatePage');
+    window.location.href = '/donationPage';
   };
 
   const handleWatchLater = () => {
@@ -159,7 +161,7 @@ const StreamerProfilePage = () => {
       <div>
       <Header />
       <header>
-        <h2 className={styles.pageTitle}>NGO PROFILES</h2>
+        <h2 className={styles.pageTitle}>NGO Profiles</h2>
       </header>
       <main className={styles.main}>
         <div className={styles.categoriesAndSortContainer}>
