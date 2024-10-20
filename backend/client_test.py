@@ -30,7 +30,14 @@ def create_wishlist(NGOid, item_name, provenance_hash, item_price):
     response = requests.post(url, json=payload)
     return response.json()
 
+def test_deploy():
+    url = f"{BASE_URL}/api/smart_contract/donate"
+    response = requests.post(url, json={})
+    return response.json()
+
 if __name__ == '__main__':
-    for NGO in NGOs:
-        NGO["photo"] = "data:image/png;base64," + base64.b64encode(get_random_noun_bytes(NGO["photo"])).decode('utf-8')
-        create_ngo(**NGO)
+    # for NGO in NGOs:
+    #     NGO["photo"] = "data:image/png;base64," + base64.b64encode(get_random_noun_bytes(NGO["photo"])).decode('utf-8')
+    #     create_ngo(**NGO)
+    print(test_deploy())
+

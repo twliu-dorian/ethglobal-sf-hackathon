@@ -1,7 +1,31 @@
 from datetime import datetime
+import subprocess
+import os
 from flask import Flask, jsonify, request, render_template_string
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+
+import contextlib
+
+
+@contextlib.contextmanager
+def new_cd(x):
+    d = os.getcwd()
+
+    # This could raise an exception, but it's probably
+    # best to let it propagate and let the caller
+    # deal with it, since they requested x
+    os.chdir(x)
+
+    try:
+        yield
+
+    finally:
+        # This could also raise an exception, but you *really*
+        # aren't equipped to figure out what went wrong if the
+        # old working directory can't be restored.
+        os.chdir(d)
+
 
 # Create a Flask application instance
 app = Flask(__name__)
@@ -160,6 +184,62 @@ def create_wishlist():
         db.session.commit()
 
         return jsonify({"message": "Wishlist item added successfully."}), 201
+
+@app.route('/api/smart_contract/deploy', methods=['POST'])
+def deploy_contract():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/deploy.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
+
+@app.route('/api/smart_contract/add_wish_list', methods=['POST'])
+def add_wish_list():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/addWishList.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
+
+@app.route('/api/smart_contract/donate', methods=['POST'])
+def donate():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/fulfillWishList.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
+
+@app.route('/api/smart_contract/track_NFT', methods=['POST'])
+def trackNFT():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/trackNFT.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
+
+@app.route('/api/smart_contract/check_bal', methods=['POST'])
+def checkBal():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/checkBalance.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
+
+@app.route('/api/smart_contract/transfer_to_manu', methods=['POST'])
+def transferManu():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/transferToManu.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
+
+@app.route('/api/smart_contract/check_ownership', methods=['POST'])
+def ckcOwner():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/checkOwnership.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
+
+@app.route('/api/smart_contract/redeemNFT', methods=['POST'])
+def redeemNFT():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/redeemNFT.js".split(), capture_output=True)
+        data = {"output": str(output.stdout)}
+    return jsonify(data), 200
 
 # Run the server
 if __name__ == '__main__':

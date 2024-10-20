@@ -63,8 +63,19 @@ async function fulfillWishlistItem(itemId, amount) {
 
 // ----------inputs-----------
 // Replace these with actual values or command line arguments
-const itemId = "1234567890123456789012345678901234567890"; // Example itemId
-const amount = 1; // Example amount to fulfill (in Ether)
+var args = process.argv.slice(2);
+var itemId;
+var amount;
+
+if (typeof args === 'undefined' || args.length == 0) {
+    itemId = "1234567890123456789012345678901234567890"; // Example itemId
+    amount = 1; // Example amount to fulfill (in Ether)
+} else {
+    itemId = args[0]
+    amount = args[1]
+}
+
+
 console.log("\nGenerated Values:");
 console.log("Item ID:", itemId);
 console.log("Amount (in Ether):", amount);
