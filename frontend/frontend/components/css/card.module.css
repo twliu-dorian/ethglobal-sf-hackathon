@@ -77,9 +77,95 @@
   /* ... add more specific classes as needed */
 
 
+
   .pageTitle {
     color: var(--Colors-Heading, #010101);
+    padding: 1.0rem 11.0rem;
+    margin-bottom: 0.2rem;
+    font-family: Londrina Solid, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 60px !important; /* Explicitly set and marked as important */
+    line-height: 56px;
+    text-transform: uppercase;
+  }
+  
+  /* Additional responsive font size using clamp for better control */
+  @media screen and (min-width: 768px) {
+    .pageTitle {
+      font-size: clamp(50px, 5vw + 1rem, 70px) !important;
+    }
+  }
+
+  .container {
+    /* min-height: 100vh; */
+    /* background-color: #fff; */
+    /* color: #000; */
+  }
+  
+  .pageTitle {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+  
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .categoriesAndSortContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
-    /* text-2xl font-bold text-white */
-    font: 600 40px/42px Della Respira, -apple-system, Roboto, Helvetica, sans-serif;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+  }
+  
+  .categoriesList {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .categoryTitle {
+    cursor: pointer;
+    color: #6b7280;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .categoryTitle:hover {
+    color: #312e81;
+  }
+  
+  .sortContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .selectWrapper {
+    position: relative;
+  }
+  
+  .sortSelect {
+    appearance: none;
+    background-color: #fff;
+    color: #312e81;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .chevronIcon {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #312e81;
   }
