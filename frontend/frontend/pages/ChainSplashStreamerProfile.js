@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import Header from '../components/header.js';
 import styles from '../components/css/card.module.css';
@@ -49,54 +50,79 @@ import styles from '../components/css/card.module.css';
 //   );
 // };
 
+// const DonationContext = createContext();
+
+// export const DonationProvider = ({ children }) => {
+//   const [donationId, setDonationId] = useState(null);
+
+//   return (
+//     <DonationContext.Provider value={{ donationId, setDonationId }}>
+//       {children}
+//     </DonationContext.Provider>
+//   );
+// };
+
 const streamers = [
   { 
-    name: 'Bob', 
-    amount: '$15.99', 
-    image: '/api/placeholder/100/100',
-    description: 'Bob streams classic rock and blues guitar sessions.',
-    category: 'MUSIC'
+    name: 'Global Relief Hub', 
+    amount: '$2.99', 
+    image: '/ngo0.svg',
+    description: 'Emergency Shelter Kits – Distributing 500 emergency shelter kits to flood victims.',
+    category: 'HUMAN AID'
   },
   { 
-    name: 'Tim', 
+    name: 'Aid4All', 
     amount: '$3.99', 
-    image: '/api/placeholder/100/100',
-    description: 'Tim hosts tech talks and live coding sessions.',
-    category: 'TECHNOLOGY'
+    image: '/ngo1.svg',
+    description: 'Food Aid for Drought – Delivering food supplies to 1,000 families affected by drought.',
+    category: 'HUMAN AID'
   },
   { 
-    name: 'Alice', 
-    amount: '$7.99', 
-    image: '/api/placeholder/100/100',
-    description: 'Alice streams K-pop dance covers and reactions.',
-    category: 'KPOP'
+    name: 'HelpNow', 
+    amount: '$1.99', 
+    image: '/ngo2.svg',
+    description: 'Medical Relief for Refugees – Providing essential medical care to refugees in conflict zones.',
+    category: 'EDUCATION'
   },
   { 
-    name: 'Joseph', 
+    name: 'Rapid Response', 
     amount: '$5.99', 
-    image: '/api/placeholder/100/100',
-    description: 'Joseph showcases robotics projects and automation demos.',
-    category: 'ROBOTICS'
+    image: '/ngo3.svg',
+    description: 'Water Purification for Crisis Areas – Supplying clean water to 10,000 people in disaster-hit areas.',
+    category: 'HUMAN AID'
   },
   { 
-    name: 'Emma', 
+    name: 'Crisis Aid Network', 
     amount: '$6.99', 
-    image: '/api/placeholder/100/100',
-    description: 'Emma hosts charity streams for various global causes.',
+    image: '/ngo4.svg',
+    description: 'Winter Clothing Distribution – Distributing warm clothes to 2,000 displaced people during winter.',
+    category: 'NGO'
+  }
+  ,
+  { 
+    name: 'Relief Action', 
+    amount: '$6.99', 
+    image: '/ngo5.svg',
+    description: 'Emergency Health Kits – Delivering 1,500 health kits to earthquake-affected communities.',
     category: 'NGO'
   }
 ];
 
-const categories = ['MUSIC', 'TECHNOLOGY', 'NGO', 'KPOP', 'ROBOTICS'];
+const categories = ['HUMANITARIAN AID', 'ENVIRONMENT', 'EDUCATION', 'ANIMAL WALFARE'];
 
 const StreamerCard = ({ name, amount, image, description, category }) => {
+  // const { setDonationId } = useContext(DonationContext);
+  // const navigate = useNavigate();
+
   const handleDonate = () => {
     console.log(`Donating to ${name}`);
-    // Implement donation logic here
+    // setDonationId(id);
+    // navigate('/donatePage');
+    window.location.href = '/donationPage';
   };
 
   const handleWatchLater = () => {
-    console.log(`Adding ${name} to watch later`);
+    console.log(`Adding ${name} to save folder`);
     // Implement watch later logic here
   };
 
@@ -122,7 +148,7 @@ const StreamerCard = ({ name, amount, image, description, category }) => {
             onClick={handleWatchLater}
             className={styles.watchLaterButton}
           >
-            WATCH LATER
+            Save
           </button>
         </div>
       </div>
@@ -132,23 +158,30 @@ const StreamerCard = ({ name, amount, image, description, category }) => {
 
 const StreamerProfilePage = () => {
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: '#fff' }}>
+      <div>
       <Header />
-      <main className="container mx-auto p-4">
-        <h2 className="text-4xl font-bold mb-6">STREAMER PROFILES</h2>
-        <div className="mb-6">
-          <ul className="flex space-x-4">
+      <header>
+        <h2 className={styles.pageTitle}>NGO Profiles</h2>
+      </header>
+      <main className={styles.main}>
+        <div className={styles.categoriesAndSortContainer}>
+          <ul className={styles.categoriesList}>
             {categories.map((category) => (
-              <li key={category} className="cursor-pointer hover:text-gray-300">{category}</li>
+              <li 
+                key={category} 
+                className={styles.categoryTitle}
+              >
+                {category}
+              </li>
             ))}
           </ul>
-        </div>
-        <div className="flex justify-end mb-4">
-          <div className="relative">
-            <select className="appearance-none bg-purple-600 text-white px-4 py-2 pr-8 rounded-md">
-              <option>SORT BY RATING</option>
-            </select>
-            <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+          <div className={styles.sortContainer}>
+            <div className={styles.selectWrapper}>
+              <select className={styles.sortSelect}>
+                <option>SORT BY RATING</option>
+              </select>
+              <ChevronDown className={styles.chevronIcon} />
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -157,7 +190,7 @@ const StreamerProfilePage = () => {
           ))}
         </div>
       </main>
-    </div>
+      </div>
   );
 };
 
