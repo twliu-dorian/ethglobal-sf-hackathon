@@ -220,6 +220,23 @@ def checkBal():
         data = {"output": str(output.stdout)}
     return jsonify(data), 200
 
+@app.route('/api/smart_contract/get_completion', methods=['POST'])
+def get_completion():
+    with new_cd("../smart-contracts"):
+        output = subprocess.run("npx hardhat run scripts/blockchain/checkBalance.js".split(), capture_output=True)
+        next = False
+        print(str(output.stdout.decode('utf-8')))
+        for line in str(output.stdout.decode('utf-8')).splitlines():
+            print(str(line))
+            if next:
+                bal = line.split()[1]
+                break
+            if "Contract" in line:
+                next = True
+
+        data = {"percentage": float(bal) / 3.0}
+    return jsonify(data), 200
+
 @app.route('/api/smart_contract/transfer_to_manu', methods=['POST'])
 def transferManu():
     with new_cd("../smart-contracts"):
@@ -243,4 +260,4 @@ def redeemNFT():
 
 # Run the server
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=3003, debug=True)

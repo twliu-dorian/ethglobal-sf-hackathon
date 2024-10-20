@@ -66,35 +66,35 @@ const streamers = [
   { 
     name: 'Global Relief Hub', 
     amount: '$2.99', 
-    image: '/ngo0.svg',
+    image: 'NGO0.svg',
     description: 'Emergency Shelter Kits – Distributing 500 emergency shelter kits to flood victims.',
     category: 'HUMAN AID'
   },
   { 
     name: 'Aid4All', 
     amount: '$3.99', 
-    image: '/ngo1.svg',
+    image: 'NGO1.svg',
     description: 'Food Aid for Drought – Delivering food supplies to 1,000 families affected by drought.',
     category: 'HUMAN AID'
   },
   { 
     name: 'HelpNow', 
     amount: '$1.99', 
-    image: '/ngo2.svg',
+    image: 'NGO2.svg',
     description: 'Medical Relief for Refugees – Providing essential medical care to refugees in conflict zones.',
     category: 'EDUCATION'
   },
   { 
     name: 'Rapid Response', 
     amount: '$5.99', 
-    image: '/ngo3.svg',
+    image: 'NGO3.svg',
     description: 'Water Purification for Crisis Areas – Supplying clean water to 10,000 people in disaster-hit areas.',
     category: 'HUMAN AID'
   },
   { 
     name: 'Crisis Aid Network', 
     amount: '$6.99', 
-    image: '/ngo4.svg',
+    image: 'NGO4.svg',
     description: 'Winter Clothing Distribution – Distributing warm clothes to 2,000 displaced people during winter.',
     category: 'NGO'
   }
@@ -102,7 +102,7 @@ const streamers = [
   { 
     name: 'Relief Action', 
     amount: '$6.99', 
-    image: '/ngo5.svg',
+    image: 'NGO5.svg',
     description: 'Emergency Health Kits – Delivering 1,500 health kits to earthquake-affected communities.',
     category: 'NGO'
   }

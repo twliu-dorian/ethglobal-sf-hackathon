@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import Header from '../components/header.js';
+
 
 // const Header = () => (
 //   <header className="bg-indigo-700 text-white p-4 flex justify-between items-center">
@@ -53,10 +54,43 @@ const NFTTransferTracker = () => (
   </div>
 );
 
-const FundraisingTracker = () => (
+const FundraisingTracker = () => {
+    const [completion, setCompletion] = useState(0);
+
+    useEffect(() => {
+      const fetchCompletion = async () => {
+        try {
+          const response = await fetch('http://localhost:3003/api/smart_contract/get_completion', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await response.json();
+          setCompletion(data.percentage);
+        } catch (error) {
+          console.error('Error fetching completion:', error);
+        }
+      };
+  
+      fetchCompletion();
+    }, []);
+ return(
   <div className="bg-white p-6 rounded-lg shadow-md">
     <h2 className="text-2xl font-bold text-indigo-600 mb-4">Fundraising Tracker</h2>
     <div className="space-y-4">
+    <div className="bg-gray-100 p-4 rounded-lg">
+          <div className="flex justify-between items-center mb-2">
+            <span className="font-medium">Human Aid</span>
+            <span className="text-blue-600 font-bold">{`${(completion * 100).toFixed(0)}% to complete`}</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div 
+              className="bg-blue-500 h-2.5 rounded-full" 
+              style={{width: `${completion * 100}%`}}
+            ></div>
+          </div>
+    </div>
       <div className="bg-gray-100 p-4 rounded-lg">
         <div className="flex justify-between items-center mb-2">
           <span className="font-medium">Education for Girls in Africa</span>
@@ -79,6 +113,7 @@ const FundraisingTracker = () => (
     </div>
   </div>
 );
+}
 
 const GoodsTracker = () => (
     <div className="bg-white p-4 rounded-lg shadow-md">
