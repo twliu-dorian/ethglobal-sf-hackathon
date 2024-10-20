@@ -13,11 +13,12 @@ function ConfirmationPage() {
         />
         <h1 className={styles.confirmationTitle}>
           Congratulations! <br /> 
-          Your donation was gone through!
+          Your donation has gone through!
         </h1>
         <div className={styles.messageWrapper}>
           <p className={styles.confirmationMessage}>
-            You will receive an email with tracking information once your donation have been spent.
+            You will receive a notification with tracking information once enough people have contributed.
+            Thank you for contributing to the cause!
           </p>
           <div className={styles.actionButtons}>
             <button className={styles.trackDonationButton}>Track Donation</button>
