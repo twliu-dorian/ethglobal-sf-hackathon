@@ -307,7 +307,7 @@ const Interface = () => {
                                             </div>
                                         ) : (
                                             <div>
-                                                <p className="text-secondary">Note: All deposits and withdrawals are of the same denomination of 0.000001 ETH.</p>
+                                                <p className="text-secondary">Note: Please copy the Proof of Deposit into the Withdraw textbox.</p>
                                                 <div className="form-group">
                                                     <textarea className="form-control" style={{ resize: "none" }} ref={(ta) => { updateTextArea(ta); }}></textarea>
                                                 </div>

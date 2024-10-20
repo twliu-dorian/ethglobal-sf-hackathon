@@ -1,0 +1,55 @@
+.headerTitle {
+    color: var(--Colors-Heading, #fff);
+    margin-top: 2px;
+    /* text-2xl font-bold text-white */
+    font: 600 40px/42px Londrina Solid, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+
+.headerTitle2 {
+    color: var(--Colors-Heading, #fff);
+    margin-top: 2px;
+    display: flex;
+    gap: 4rem; /* Adjust the value as needed */
+    /* text-2xl font-bold text-white */
+    font: 400 26px/42px Londrina Solid Light, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+
+.headerTitle3 {
+
+    color: var(--Colors-White, #FFF);
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 68.75% */
+    font: 400 32px/42px Londrina Solid, -apple-system, Roboto, Helvetica, sans-serif;
+
+  }
+
+.headerTitle4 {
+    padding: 0.5rem 1rem; /* Equivalent to px-4 py-2 */
+    border-radius: 9999px; /* Equivalent to rounded-full */
+    color: #FFF;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    font: 400 32px/42px "Londrina Solid", -apple-system, Roboto, Helvetica, sans-serif;
+    border: 2px solid white;
+    transition: all 0.3s;
+  }
+
+  .disconnected {
+    background-color: #2F1893;
+  }
+  
+  .connected {
+    background-color: #16a34a; /* Equivalent to bg-green-600 */
+  }
+
+  .headerTitle4:hover {
+    opacity: 0.9;
+  }
+
+  .bg-custom-purple {
+    background-color: #2F1893;
+  }
