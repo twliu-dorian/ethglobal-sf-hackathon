@@ -3,7 +3,7 @@ require("@nomicfoundation/hardhat-toolbox");
 const dotenv = require("dotenv");
 dotenv.config();
 const apiUrlKey = process.env.API_URL_KEY
-const privKey = process.env.PRIVATE_KEY
+const privKey = process.env.DEPLOYER_PRIVATE_KEY
 
 const config = {
   solidity: {
@@ -24,6 +24,7 @@ const config = {
     },
     localhost: {
       url: "http://127.0.0.1:8545",
+      accounts: [privKey],
       chainId: 31337,
     },
   }
