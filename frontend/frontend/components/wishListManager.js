@@ -6,8 +6,8 @@ export class WishlistManager {
     }
 
     // Method to add an item to the wishlist
-    addWishlistItem(itemId, price, recipient) {
-        const newItem = { itemId, price, recipient };
+    addWishlistItem(itemId, price, recipient, manufacuturer) {
+        const newItem = { itemId, price, recipient, manufacuturer};
         this.wishlist.push(newItem);
         console.log("Wishlist item added successfully!", newItem);
     }

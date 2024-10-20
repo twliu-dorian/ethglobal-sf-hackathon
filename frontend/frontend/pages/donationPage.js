@@ -9,8 +9,6 @@ function DonationConfirmation() {
   return (
     <>
       <Header /> {/* Use the Header component */}
-
-      
       <main className={styles.donatePage}>
         <div className={styles.container}>
           <div className={styles.contentWrapper}>
