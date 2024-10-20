@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import Header from '../components/header.js';
 import styles from '../components/css/card.module.css';
@@ -46,6 +47,18 @@ import styles from '../components/css/card.module.css';
 //         </button>
 //       </div>
 //     </header>
+//   );
+// };
+
+// const DonationContext = createContext();
+
+// export const DonationProvider = ({ children }) => {
+//   const [donationId, setDonationId] = useState(null);
+
+//   return (
+//     <DonationContext.Provider value={{ donationId, setDonationId }}>
+//       {children}
+//     </DonationContext.Provider>
 //   );
 // };
 
@@ -98,9 +111,12 @@ const streamers = [
 const categories = ['HUMANITARIAN AID', 'ENVIRONMENT', 'EDUCATION', 'ANIMAL WALFARE'];
 
 const StreamerCard = ({ name, amount, image, description, category }) => {
+  // const { setDonationId } = useContext(DonationContext);
+
   const handleDonate = () => {
     console.log(`Donating to ${name}`);
-    // Implement donation logic here
+    // setDonationId(id);
+    navigate('/donatePage');
   };
 
   const handleWatchLater = () => {
