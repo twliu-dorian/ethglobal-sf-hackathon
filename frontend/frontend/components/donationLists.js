@@ -2,9 +2,9 @@ import React from "react";
 import styles from '../public/css/DonationConfirmation.module.css';
 
 const donationItems = [
-  { name: "EWB s orphan centre", amount: 22 },
+  { name: "EWB's orphan centre", amount: 22 },
   { name: "Steven's IPHONE 18", amount: 63 },
-  { name: "PlANT-A-TREE", amount: 50 },
+  { name: "PlANT-A-TREE", amount: 52 },
 ];
 
 function DonationList() {
@@ -29,8 +29,7 @@ function DonationList() {
         <div className={styles.totalWrapper}>
           <span className={styles.totalLabel}>Total</span>
           <span className={styles.totalAmount}>${total}</span>
-        </div>
-        <button className={styles.confirmButton}>Confirm Donation</button>
+        </div>        
       </div>
     </section>
   );

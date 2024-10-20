@@ -1,3 +1,4 @@
+
 .donatePage {
   background-color: #fff;
   display: flex;
@@ -30,11 +31,12 @@
   width: 100%;
   flex-direction: column;
   align-items: start;
-  font-family: Digital Numbers, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: LongdrinaSolid, -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 400;
 }
 
 .sectionTitle {
+  font-family: LongdrinaSolid, sans-serif;
   font-size: 32px;
   line-height: 1;
   color: var(--Colors-Heading, #1e0e62);
@@ -42,6 +44,7 @@
 }
 
 .subTitle {
+  font-family: LongdrinaSolid, sans-serif;
   font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -50,6 +53,7 @@
 }
 
 .address {
+  font-family: LongdrinaSolid, sans-serif;
   color: var(--Colors-Text, rgba(21, 20, 57, 0.4));
   font-size: 18px;
   line-height: 26px;
@@ -62,14 +66,11 @@
   gap: 11px;
   color: var(--Action-Secondary, #482be7);
   align-items: center;
-}
-
-.paymentIcon {
-  width: 204px;
-  height: auto;
+  font-family: LongdrinaSolid, sans-serif;
 }
 
 .editButton {
+  font-family: LongdrinaSolid, sans-serif;
   background: none;
   border: none;
   color: var(--Action-Secondary, #482be7);
@@ -78,6 +79,7 @@
 }
 
 .commentInput {
+  font-family: LongdrinaSolid, sans-serif;
   border-radius: 10px;
   border: 2px solid var(--Colors-Grey, #ebeaed);
   background-color: var(--Colors-White, #fff);
@@ -92,6 +94,7 @@
 }
 
 .backButton {
+  font-family: LongdrinaSolid, sans-serif;
   border-radius: 100px;
   border: 2px solid var(--Action-Secondary, #482be7);
   display: flex;
@@ -105,11 +108,6 @@
   background: none;
   cursor: pointer;
   align-items: center;
-}
-
-.backIcon {
-  width: 5px;
-  height: auto;
 }
 
 .donationListSection {
@@ -221,36 +219,6 @@
   transform: rotate(45deg);  /* Rotate to make it diamond shaped */
 }
 
-/* Blue Diamond */
-.blueDiamond {
-  background-color: blue;
-}
-.blueDiamond::before {
-  background-color: lightblue;
-  top: -25px;
-  left: 0;
-}
-.blueDiamond::after {
-  background-color: darkblue;
-  bottom: -25px;
-  left: 0;
-}
-
-/* Red Diamond */
-.redDiamond {
-  background-color: red;
-}
-.redDiamond::before {
-  background-color: pink;
-  top: -25px;
-  left: 0;
-}
-.redDiamond::after {
-  background-color: darkred;
-  bottom: -25px;
-  left: 0;
-}
-
 
 .confirmButton {
   border-radius: 100px;
@@ -285,8 +253,7 @@
     padding-right: 20px;
   }
 
-  .backButton,
-  .confirmButton {
+  .backButton{
     padding: 12px 20px;
   }
 
