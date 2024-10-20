@@ -18,38 +18,38 @@ export const Header = () => {
   };
 
   return (
-    
+
     <header style={{ backgroundColor: "#2F1893" }} className="p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="chainSplash logo" className="w-28 h-28 mt-2" />
+          <img src="/logo.svg" alt="chainSplash logo" className="w-28 h-28 mt-2" />
           <h1 className={styles.headerTitle}>ChainSplash</h1>
         </div>
-<nav>
-  <ul className={styles.headerTitle2}>
-    {[
-      { name: 'Dashboard', route: '/ngoDash' },
-      { name: 'Impact', route: '#' },
-      { name: 'Leaderboard', route: '#' },
-      { name: 'Home', route: '/ChainSplashStreamerProfile' }
-    ].map((item) => (
-      <li key={item.name}>
-        <button 
-          onClick={() => {
-            if (item.route !== '#') {
-              window.location.href = item.route;
-            } else {
-              console.log(`Navigating to ${item.name}`);
-            }
-          }} 
-          className="text-white hover:text-gray-300 focus:outline-none"
-        >
-          {item.name}
-        </button>
-      </li>
-    ))}
-  </ul>
-</nav>
+        <nav>
+          <ul className={styles.headerTitle2}>
+            {[
+              { name: 'Dashboard', route: '/ngoDash' },
+              { name: 'Impact', route: '#' },
+              { name: 'Confirmation', route: '/confirmationPage' },
+              { name: 'Home', route: '/ChainSplashStreamerProfile' }
+            ].map((item) => (
+              <li key={item.name}>
+                <button
+                  onClick={() => {
+                    if (item.route !== '#') {
+                      window.location.href = item.route;
+                    } else {
+                      console.log(`Navigating to ${item.name}`);
+                    }
+                  }}
+                  className="text-white hover:text-gray-300 focus:outline-none"
+                >
+                  {item.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
         {/* <button 
           className={`${styles.headerTitle4} ${isConnected ? 'bg-green-600' : 'bg-custom-purple'}`}
           onClick={isConnected ? null : connectWallet}

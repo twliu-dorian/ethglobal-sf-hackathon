@@ -25,9 +25,9 @@ function ConfirmationPage() {
   }, []);
   
   return (
-    
+    <>
+      <Header />
     <main className={styles.confirmationPage}>
-      <Header/ >
       <section className={styles.contentWrapper}>
         <img 
           loading="lazy" 
@@ -59,6 +59,7 @@ function ConfirmationPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }
 
