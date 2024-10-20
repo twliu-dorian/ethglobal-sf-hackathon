@@ -51,38 +51,46 @@ import styles from '../components/css/card.module.css';
 
 const streamers = [
   { 
-    name: 'Bob', 
-    amount: '$15.99', 
-    image: '/api/placeholder/100/100',
-    description: 'Bob streams classic rock and blues guitar sessions.',
+    name: 'Clean Water for All', 
+    amount: '$2.99', 
+    image: '/ngo0.svg',
+    description: 'A project focused on providing access to safe drinking water in rural communities by installing water filtration systems and educating locals on water hygiene practices.',
     category: 'MUSIC'
   },
   { 
     name: 'Tim', 
     amount: '$3.99', 
-    image: '/api/placeholder/100/100',
+    image: '/ngo1.svg',
     description: 'Tim hosts tech talks and live coding sessions.',
     category: 'TECHNOLOGY'
   },
   { 
     name: 'Alice', 
     amount: '$7.99', 
-    image: '/api/placeholder/100/100',
+    image: '/ngo2.svg',
     description: 'Alice streams K-pop dance covers and reactions.',
     category: 'KPOP'
   },
   { 
     name: 'Joseph', 
     amount: '$5.99', 
-    image: '/api/placeholder/100/100',
+    image: '/ngo3.svg',
     description: 'Joseph showcases robotics projects and automation demos.',
     category: 'ROBOTICS'
   },
   { 
     name: 'Emma', 
     amount: '$6.99', 
-    image: '/api/placeholder/100/100',
+    image: '/ngo4.svg',
     description: 'Emma hosts charity streams for various global causes.',
+    category: 'NGO'
+  }
+  ,
+  { 
+    name: 'Sally', 
+    amount: '$6.99', 
+    image: '/ngo5.svg',
+    description: 'Sally hosts charity streams for various global causes.',
     category: 'NGO'
   }
 ];
@@ -96,7 +104,7 @@ const StreamerCard = ({ name, amount, image, description, category }) => {
   };
 
   const handleWatchLater = () => {
-    console.log(`Adding ${name} to watch later`);
+    console.log(`Adding ${name} to save folder`);
     // Implement watch later logic here
   };
 
@@ -122,7 +130,7 @@ const StreamerCard = ({ name, amount, image, description, category }) => {
             onClick={handleWatchLater}
             className={styles.watchLaterButton}
           >
-            WATCH LATER
+            Save
           </button>
         </div>
       </div>
@@ -132,10 +140,10 @@ const StreamerCard = ({ name, amount, image, description, category }) => {
 
 const StreamerProfilePage = () => {
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: '#fff' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#fff' }}>
       <Header />
       <main className="container mx-auto p-4">
-        <h2 className="text-4xl font-bold mb-6">STREAMER PROFILES</h2>
+        <h2 className={styles.pageTitle}>STREAMER PROFILES</h2>
         <div className="mb-6">
           <ul className="flex space-x-4">
             {categories.map((category) => (
