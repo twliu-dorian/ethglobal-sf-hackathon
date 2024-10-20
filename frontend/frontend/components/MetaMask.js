@@ -1,10 +1,10 @@
-import { useState } from "react";
+// components/MetaMask.js
+
+import React, { useState } from "react";
 import $u from '../utils/$u.js';
-import * as ethers from "ethers";
-import Wishlist from "./wishList";
+import { ethers } from "ethers";
 
-
-const wc = require("../circuit/witness_calculator.js");
+const wc = require("../circuit/witness_calculator.js"); // Ensure witness_calculator.js uses CommonJS
 
 const tornadoAddress = "0x06DB9c2856Eab779B2794E98c769a2e6aDA4D4b6";
 
@@ -20,13 +20,14 @@ const Interface = () => {
     const [proofStringEl, updateProofStringEl] = useState(null);
     const [textArea, updateTextArea] = useState(null);
 
-    // interface states
+    // Interface states
     const [section, updateSection] = useState("Deposit");
     const [displayCopiedMessage, updateDisplayCopiedMessage] = useState(false);
     const [withdrawalSuccessful, updateWithdrawalSuccessful] = useState(false);
     const [metamaskButtonState, updateMetamaskButtonState] = useState(ButtonState.Normal);
     const [depositButtonState, updateDepositButtonState] = useState(ButtonState.Normal);
     const [withdrawButtonState, updateWithdrawButtonState] = useState(ButtonState.Normal);
+
 
     const connectMetamask = async () => {
         try{
@@ -54,12 +55,13 @@ const Interface = () => {
                 balance: balance
             };
             updateAccount(newAccountState);
-        }catch(e){
+        } catch(e) {
             console.log(e);
         }
 
         updateMetamaskButtonState(ButtonState.Normal);
     };
+    
     const depositEther = async () => {
         updateDepositButtonState(ButtonState.Disabled);
 
@@ -71,60 +73,72 @@ const Interface = () => {
             nullifier: $u.BN256ToBin(nullifier).split("")
         };
 
-        var res = await fetch("/deposit.wasm");
-        var buffer = await res.arrayBuffer();
-        var depositWC = await wc(buffer);
+        try {
+            const res = await fetch("/deposit.wasm");
+            const buffer = await res.arrayBuffer();
+            const depositWC = await wc(buffer);
 
-        const r = await depositWC.calculateWitness(input, 0);
-        
-        const commitment = r[1];
-        const nullifierHash = r[2];
+            const r = await depositWC.calculateWitness(input, 0);
 
-        const value = ethers.BigNumber.from("10000000").toHexString();
+            // Convert BigInt to string
+            const commitment = r[1].toString();
+            const nullifierHash = r[2].toString();
 
-        const tx = {
-            to: tornadoAddress,
-            from: account.address,
-            value: value,
-            data: tornadoInterface.encodeFunctionData("deposit", [commitment])
-        };
+            const value = ethers.BigNumber.from("100000000000000000").toHexString();
 
-        try{
-            const txHash = await window.ethereum.request({ method: "eth_sendTransaction", params: [tx] });
-
-            const proofElements = {
-                nullifierHash: `${nullifierHash}`,
-                secret: secret,
-                nullifier: nullifier,
-                commitment: `${commitment}`,
-                txHash: txHash
+            const tx = {
+                to: tornadoAddress,
+                from: account.address,
+                value: value,
+                data: tornadoInterface.encodeFunctionData("deposit", [commitment])
             };
 
-            console.log(proofElements);
+            try{
+                const txHash = await window.ethereum.request({ method: "eth_sendTransaction", params: [tx] });
 
-            updateProofElements(btoa(JSON.stringify(proofElements)));
-        }catch(e){
+                const proofElements = {
+                    nullifierHash: `${nullifierHash}`,
+                    secret: secret,
+                    nullifier: nullifier,
+                    commitment: `${commitment}`,
+                    txHash: txHash
+                };
+
+                console.log(proofElements);
+
+                updateProofElements(btoa(JSON.stringify(proofElements)));
+            } catch(e) {
+                console.log(e);
+            }
+
+        } catch(e) {
             console.log(e);
         }
 
         updateDepositButtonState(ButtonState.Normal);
     };
+    
     const copyProof = () => {
         if(!!proofStringEl){
             flashCopiedMessage();
             navigator.clipboard.writeText(proofStringEl.innerHTML);
         }  
     };
+    
     const withdraw = async () => {
         updateWithdrawButtonState(ButtonState.Disabled);
 
-        if(!textArea || !textArea.value){ alert("Please input the proof of deposit string."); }
+        if(!textArea || !textArea.value){ 
+            alert("Please input the proof of deposit string."); 
+            updateWithdrawButtonState(ButtonState.Normal); // Prevent hanging state
+            return; // Exit the function early
+        }
 
         try{
             const proofString = textArea.value;
             const proofElements = JSON.parse(atob(proofString));
 
-            receipt = await window.ethereum.request({ method: "eth_getTransactionReceipt", params: [proofElements.txHash] });
+            let receipt = await window.ethereum.request({ method: "eth_getTransactionReceipt", params: [proofElements.txHash] });
             if(!receipt){ throw "empty-receipt"; }
 
             const log = receipt.logs[0];
@@ -159,14 +173,14 @@ const Interface = () => {
             };
             const txHash = await window.ethereum.request({ method: "eth_sendTransaction", params: [tx] });
 
-            var receipt;
-            while(!receipt){
-                receipt = await window.ethereum.request({ method: "eth_getTransactionReceipt", params: [txHash] });
+            var withdrawalReceipt;
+            while(!withdrawalReceipt){
+                withdrawalReceipt = await window.ethereum.request({ method: "eth_getTransactionReceipt", params: [txHash] });
                 await new Promise((resolve, reject) => { setTimeout(resolve, 1000); });
             }
 
-            if(!!receipt){ updateWithdrawalSuccessful(true); }
-        }catch(e){
+            if(withdrawalReceipt){ updateWithdrawalSuccessful(true); }
+        } catch(e) {
             console.log(e);
         }
 
@@ -180,12 +194,8 @@ const Interface = () => {
         }, 1000);
     }
 
-    
     return (
         <div>
-            <div style={{ height: "70px" }}></div>
-            {/* Wishlist Section */}
-            <Wishlist />
 
             <nav className="navbar navbar-nav fixed-top bg-dark text-light">
                 {
@@ -204,7 +214,7 @@ const Interface = () => {
                         </div>
                     ) : (
                         <div className="container">
-                            <div className="navbar-left"><h5>Donation</h5></div>
+                            <div className="navbar-left"><h5>NFTA-Tornado</h5></div>
                             <div className="navbar-right">
                                 <button 
                                     className="btn btn-primary" 
@@ -219,17 +229,15 @@ const Interface = () => {
                 
             </nav>
 
-            
-
             <div style={{ height: "60px" }}></div>
 
             <div className="container" style={{ marginTop: 60 }}>
                 <div className="card mx-auto" style={{ maxWidth: 450 }}>
                     {
                         (section == "Deposit") ? (
-                            <img className="card-img-top" src="/img/deposit.png" />
+                            <img className="card-img-top" src="/img/deposit.png" alt="Deposit" />
                         ) : (
-                            <img className="card-img-top" src="/img/withdraw.png" />
+                            <img className="card-img-top" src="/img/withdraw.png" alt="Withdraw" />
                         )
                     }
                     <div className="card-body">
@@ -277,12 +285,12 @@ const Interface = () => {
                                             </div>
                                         ) : (
                                             <div>
-                                                <p className="text-secondary">Note: All deposits and withdrawals are of the same denomination of 0.001 ETH.</p>
+                                                <p className="text-secondary">Note: All deposits and withdrawals are of the same denomination of 0.1 ETH.</p>
                                                 <button 
                                                     className="btn btn-success" 
                                                     onClick={depositEther}
                                                     disabled={depositButtonState == ButtonState.Disabled}
-                                                ><span className="small">Deposit 0.001 ETH</span></button>
+                                                ><span className="small">Deposit 0.1 ETH</span></button>
                                             </div>
                                             
                                         )
@@ -307,7 +315,7 @@ const Interface = () => {
                                             </div>
                                         ) : (
                                             <div>
-                                                <p className="text-secondary">Note: All deposits and withdrawals are of the same denomination of 0.000001 ETH.</p>
+                                                <p className="text-secondary">Note: All deposits and withdrawals are of the same denomination of 0.1 ETH.</p>
                                                 <div className="form-group">
                                                     <textarea className="form-control" style={{ resize: "none" }} ref={(ta) => { updateTextArea(ta); }}></textarea>
                                                 </div>
@@ -315,7 +323,7 @@ const Interface = () => {
                                                     className="btn btn-primary" 
                                                     onClick={withdraw}
                                                     disabled={withdrawButtonState == ButtonState.Disabled}
-                                                ><span className="small">Withdraw 0.0000001 ETH</span></button>
+                                                ><span className="small">Withdraw 0.1 ETH</span></button>
                                             </div>                  
                                         )
                                     }
@@ -336,7 +344,7 @@ const Interface = () => {
 
                     <div className="card-footer p-4" style={{ lineHeight: "15px" }}>
                         <span className="small text-secondary" style={{ fontSize: "12px" }}>
-                            <strong>Disclaimer:</strong> Products intended for ETH Hackathon purposes only.
+                            <strong>Disclaimer:</strong> Products intended for educational purposes are <i>not</i> to be used with commercial intent. NFTA, the organization who sponsored the development of this project, explicitly prohibits and assumes no responsibilities for losses due to such use.
                         </span>
                     </div>
                 </div>
