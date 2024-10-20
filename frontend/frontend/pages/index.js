@@ -1,7 +1,7 @@
 import Script from "next/script";
 import Interface from '../components/Interface.js';
 import Head from 'next/head';
-import { WishlistManager } from '/Users/hu/Work/ETH Global/ethglobal-sf-hackathon/finale/frontend/components/wishListManager.js';
+import { WishlistManager } from '../components/wishListManager.js';
 
 const Index = () => {
 

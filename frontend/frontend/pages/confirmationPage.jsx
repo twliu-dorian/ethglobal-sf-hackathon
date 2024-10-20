@@ -1,0 +1,32 @@
+import React from "react";
+import styles from '../styles/confirmationPage.module.css';
+
+function ConfirmationPage() {
+  return (
+    <main className={styles.confirmationPage}>
+      <section className={styles.contentWrapper}>
+        <img 
+          loading="lazy" 
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/379f72f7059fd3f043ce3162f085258e14a09f17d9b3e543d86c66fdd82acb33?placeholderIfAbsent=true&apiKey=f385b829caee41588af58fa031c51f58" 
+          className={styles.confirmationIcon} 
+          alt="Confirmation icon"
+        />
+        <h1 className={styles.confirmationTitle}>
+          Congratulations! <br /> 
+          Your donation was gone through!
+        </h1>
+        <div className={styles.messageWrapper}>
+          <p className={styles.confirmationMessage}>
+            You will receive an email with tracking information once your donation have been spent.
+          </p>
+          <div className={styles.actionButtons}>
+            <button className={styles.trackDonationButton}>Track Donation</button>
+            <button className={styles.continueButton}>Continue Browsing</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+export default ConfirmationPage;

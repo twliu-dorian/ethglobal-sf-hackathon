@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Digital Numbers';
+    src: url('/fonts/DigitalNumbers-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Della Respira';
+    src: url('/fonts/DellaRespira-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
