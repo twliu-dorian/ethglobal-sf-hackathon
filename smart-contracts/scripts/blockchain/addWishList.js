@@ -81,7 +81,7 @@ const { ethers } = require('ethers');
 
 const contractAddress = process.env.CONTRACT_ADDRESS;
 const apiUrlKey = process.env.API_URL_KEY;
-const privKey = process.env.USER_PRIVATE_KEY;
+const privKey = process.env.RECIPIENT_PRIVATE_KEY;
 
 async function addWishlistItem(itemId, price, recipient, manufacturer) {
     const provider = new ethers.JsonRpcProvider(apiUrlKey);

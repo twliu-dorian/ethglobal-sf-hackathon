@@ -20,6 +20,7 @@ contract WishlistNFT is ERC721 {
     mapping(uint256 => address) public itemRecipients;
     mapping(uint256 => address) public itemManufacturers;
     mapping(uint256 => uint256) public itemValues;
+    mapping(uint256 => uint256) public collectedFunds;
 
     event WishlistItemAdded(
         uint256 indexed itemId,
@@ -32,7 +33,6 @@ contract WishlistNFT is ERC721 {
         uint8 amount,
         address indexed fulfiller
     );
-
     event NFTMinted(uint256 indexed itemId, address indexed recipient);
     event NFTRedeemed(
         uint256 indexed itemId,
@@ -202,68 +202,39 @@ contract WishlistNFT is ERC721 {
         this.fulfillWishlist{value: denomination}(_itemId, 1);
     }
 
-    function redeemNFT(uint256 tokenId) public nonReentrant {
+    function transferToManufacturer(uint256 tokenId) public {
+        address manufacturer = itemManufacturers[tokenId];
+        require(
+            manufacturer != address(0),
+            "Manufacturer not set for this item"
+        );
         require(
             ownerOf(tokenId) == msg.sender,
-            "Only the owner can redeem the NFT"
-        );
-        require(
-            msg.sender == itemManufacturers[tokenId],
-            "Only the manufacturer can redeem the NFT"
+            "Only the owner can transfer the NFT"
         );
 
-        uint256 redeemValue = itemValues[tokenId];
+        // Transfer the token to the manufacturer
+        _safeTransfer(msg.sender, manufacturer, tokenId, "");
+    }
+    function burnAndRedeem(uint256 tokenId) public {
+        address manufacturer = itemManufacturers[tokenId];
         require(
-            address(this).balance >= redeemValue,
-            "Insufficient contract balance"
+            msg.sender == manufacturer,
+            "Only the manufacturer can redeem the NFT"
         );
 
         // Burn the NFT
         _burn(tokenId);
 
-        // Transfer the value to the manufacturer
-        (bool success, ) = payable(msg.sender).call{value: redeemValue}("");
-        require(success, "Transfer failed");
-
-        emit NFTRedeemed(tokenId, msg.sender, redeemValue);
-    }
-
-    function transferFrom(
-        address from,
-        address to,
-        uint256 tokenId
-    ) public virtual override {
+        // Transfer the associated value to the manufacturer
+        uint256 value = itemValues[tokenId];
         require(
-            to == itemManufacturers[tokenId],
-            "NFT can only be transferred to the specified manufacturer"
+            address(this).balance >= value,
+            "Insufficient contract balance"
         );
-        super.transferFrom(from, to, tokenId);
-    }
 
-    function safeTransferFrom(
-        address from,
-        address to,
-        uint256 tokenId
-    ) public virtual override {
-        require(
-            to == itemManufacturers[tokenId],
-            "NFT can only be transferred to the specified manufacturer"
-        );
-        super.safeTransferFrom(from, to, tokenId);
-    }
+        payable(manufacturer).transfer(value);
 
-    function safeTransferFrom(
-        address from,
-        address to,
-        uint256 tokenId,
-        bytes memory data
-    ) public virtual override {
-        require(
-            to == itemManufacturers[tokenId],
-            "NFT can only be transferred to the specified manufacturer"
-        );
-        super.safeTransferFrom(from, to, tokenId, data);
+        emit NFTRedeemed(tokenId, manufacturer, value);
     }
-
-    receive() external payable {}
 }
