@@ -27,6 +27,19 @@ const config = {
       accounts: [privKey],
       chainId: 31337,
     },
+    neondevnet: {
+      url: "https://devnet.neonevm.org",
+      accounts: [privKey],
+      chainId: 245022926,
+      allowUnlimitedContractSize: false,
+      gas: "auto",
+      gasPrice: "auto",
+    },
+    cardona: {
+      url: "https://rpc.cardona.zkevm-rpc.com",
+      accounts: [privKey],
+      chainId: 2442,
+    }
   }
 
 };
